@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import HomePageContainer from "./Home/components/HomePageContainer";
 import HomePageProvider from "./Home/contexts/HomePageContext";
 import SchoolsContainer from "./Courses/components/SchoolsContainer";
+import SchoolsProvider from "./Courses/contexts/SchoolsContext";
+import SchoolProvider from "./Courses/contexts/SchoolContext";
 import SchoolContainer from "./Courses/components/SchoolContainer";
 import SubjectContainer from "./Courses/components/SubjectContainer";
 import ScheduleProvider from "./Schedule/contexts/ScheduleContext";
@@ -17,18 +19,27 @@ function App(props) {
       </ScheduleProvider>
       <Switch>
         <Route
-          path="year/:year_id/semester/:semester_id/schools/:school_id/subject/:subject_id"
+          path="/semester/:year_id/:semester_id/schools/:school_id/subject/:subject_id"
           component={SubjectContainer}
         />
         <Route
-          path="/semester/:semester_id/schools/:school_id/"
-          component={SchoolContainer}
-        />
+          path="/semester/:year_id/:semester_id/schools/:school_id/"
+        >
+          <SchoolProvider>
+            <SchoolContainer />
+          </SchoolProvider>
+
+        </Route>
         <Route
-          path="/semester/:semesterid/schools"
-          component={SchoolsContainer}
-        />
-        <Route path="/" component={HomePageContainer} />
+          path="/semester/:year_id/:semester_id/schools"
+        >
+          <SchoolsProvider>
+            <SchoolsContainer />
+          </SchoolsProvider>
+        </Route>
+        <Route path="/">
+          <HomePageContainer />
+        </Route>
       </Switch>
     </Router>
   );
