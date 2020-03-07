@@ -1,22 +1,18 @@
 import './App.css';
 import React from 'react';
-import HomePageContainer from './HomePageContainer';
-import {
-  Switch, Route, useRouteMatch, useParams,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-function App() {
+import HomePageContainer from './HomePageContainer';
+
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
+  <Router>
       <Switch>
-      <Route path=""> 
-      <HomePageContainer />
-      </Route>
+      <Route path="/home" component={HomePageContainer}/> 
       </Switch>
-      </header>
-    </div>
+
+  </Router>
+
   );
 }
 
