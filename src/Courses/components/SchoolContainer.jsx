@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 function SchoolContainer() {
   const params = useParams();
   console.log(params);
+
   return <div>School container</div>;
 }
 
