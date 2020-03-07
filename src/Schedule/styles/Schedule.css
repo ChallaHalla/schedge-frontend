@@ -1,7 +1,9 @@
 .schedule__toggle{
   position:absolute;
   top:50vh;
+  z-index: 10;
 }
+
 .schedule-window__hidden{
   position: absolute; 
   left:-100%;
@@ -10,8 +12,11 @@
 .schedule-window__close{
   margin-left:auto;
 }
+
 .schedule-window__visible{
   position: absolute; 
+
+  z-index: 10;
   width:25%;
   height: 100vh;
   left:0%;

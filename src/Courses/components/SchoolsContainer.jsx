@@ -13,14 +13,14 @@ function SchoolsContainer() {
   console.log(match);
   console.log(params);
   if (fetchingSchools) {
-    return <div class="loading">Loading</div>;
+    return <div className="loading">Loading</div>;
   }
   return (
     <div>
       <h3>Schools</h3>
-      {schools.map(school => (
+      {schools.map((school) => (
         <div>
-          <Link to={`${match.path}/schools/${school.code}`}>{school.name}</Link>
+          <Link to={`${match.url}/${school.code}`}>{school.name}</Link>
           <br />
         </div>
       ))}

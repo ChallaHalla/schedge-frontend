@@ -10,38 +10,44 @@ import SchoolContainer from "./Courses/components/SchoolContainer";
 import SubjectContainer from "./Courses/components/SubjectContainer";
 import ScheduleProvider from "./Schedule/contexts/ScheduleContext";
 import ScheduleContainer from "./Schedule/components/ScheduleContainer";
-import SubjectProvider from "./Courses/contexts/SubjectContext";
+import ScheduleSidebar from "./Schedule/components/ScheduleSidebar";
 
 function App(props) {
   return (
-    <Router>
-      <ScheduleProvider>
-        <ScheduleContainer />
-      </ScheduleProvider>
-      <Switch>
-        <Route
-          path="/semester/:year_id/:semester_id/schools/:school_id/subject/:subject_id"
-          component={SubjectContainer}
-        >
-          <SubjectProvider>
-            <SubjectContainer />
-          </SubjectProvider>
-        </Route>
-        <Route path="/semester/:year_id/:semester_id/schools/:school_id/">
-          <SchoolProvider>
-            <SchoolContainer />
-          </SchoolProvider>
-        </Route>
-        <Route path="/semester/:year_id/:semester_id/schools">
-          <SchoolsProvider>
-            <SchoolsContainer />
-          </SchoolsProvider>
-        </Route>
-        <Route path="/">
-          <HomePageContainer />
-        </Route>
-      </Switch>
-    </Router>
+    <ScheduleProvider>
+      <Router>
+        <ScheduleSidebar />
+        <Switch>
+          <Route path="/semester/:year_id/:semester_id/schedule">
+            <ScheduleProvider>
+              <ScheduleContainer />
+            </ScheduleProvider>
+          </Route>
+          <Route
+            path="/semester/:year_id/:semester_id/schools/:school_id/subject/:subject_id"
+            component={SubjectContainer}
+          />
+          <Route
+            path="/semester/:year_id/:semester_id/schools/:school_id/"
+          >
+            <SchoolProvider>
+              <SchoolContainer />
+            </SchoolProvider>
+
+          </Route>
+          <Route
+            path="/semester/:year_id/:semester_id/schools"
+          >
+            <SchoolsProvider>
+              <SchoolsContainer />
+            </SchoolsProvider>
+          </Route>
+          <Route path="/">
+            <HomePageContainer />
+          </Route>
+        </Switch>
+      </Router>
+    </ScheduleProvider>
   );
 }
 
