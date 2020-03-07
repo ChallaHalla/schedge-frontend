@@ -5,13 +5,8 @@ import { SchoolsContext } from "../contexts/SchoolsContext";
 function SchoolsContainer() {
   const schoolsContext = useContext(SchoolsContext);
   const { fetchingSchools, schools } = schoolsContext;
-  useEffect(() => {
-    console.log(schoolsContext);
-  }, []);
   const params = useParams();
   const match = useRouteMatch();
-  console.log(match);
-  console.log(params);
   if (fetchingSchools) {
     return <div class="loading">Loading</div>;
   }
@@ -20,7 +15,7 @@ function SchoolsContainer() {
       <h3>Schools</h3>
       {schools.map(school => (
         <div>
-          <Link to={`${match.path}/schools/${school.code}`}>{school.name}</Link>
+          <Link to={`${match.url}/${school.code}`}>{school.name}</Link>
           <br />
         </div>
       ))}

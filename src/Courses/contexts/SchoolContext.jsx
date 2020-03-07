@@ -10,13 +10,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         subjects: [],
-        fetchingSubjects: true,
+        fetchingSubjects: true
       };
     case "STORE_SUBJECTS":
       return {
         ...state,
-        subjects: action.schools,
-        fetchingSubjects: false,
+        subjects: action.subjects,
+        fetchingSubjects: false
       };
 
     default:
@@ -28,26 +28,26 @@ function SchoolProvider(props) {
   const { children } = props;
   const { school_id } = useParams();
   const [state, dispatch] = useReducer(reducer, {
-    subjects: false,
-    schools: [],
+    fetchingSubjects: false,
+    subjects: []
   });
 
   useEffect(() => {
     dispatch({
-      type: "FETCH_SUBJECTS",
+      type: "FETCH_SUBJECTS"
     });
-    api.getSchoolSubjects({ school_id }).then((res) => {
+    api.getSchoolSubjects({ school_id }).then(res => {
       console.log(res);
       dispatch({
-        type: "FETCH_SUBJECTS",
-        subjects: res,
+        type: "STORE_SUBJECTS",
+        subjects: res
       });
     });
   }, []);
   return (
     <SchoolContext.Provider
       value={{
-        ...state,
+        ...state
       }}
     >
       {children}
