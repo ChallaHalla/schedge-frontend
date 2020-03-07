@@ -1,33 +1,36 @@
-import './App.css';
-
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import React from 'react';
-
-import HomePageContainer from './Home/components/HomePageContainer';
+import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import HomePageContainer from "./Home/components/HomePageContainer";
 import HomePageProvider from "./Home/contexts/HomePageContext";
-import ScheduleContainer from "./Schedule/components/ScheduleContainer";
+import SchoolsContainer from "./Courses/components/SchoolsContainer";
+import SchoolContainer from "./Courses/components/SchoolContainer";
+import SubjectContainer from "./Courses/components/SubjectContainer";
 import ScheduleProvider from "./Schedule/contexts/ScheduleContext";
-import 'tui-calendar/dist/tui-calendar.css';
-
-// If you use the default popups, use this.
-import 'tui-date-picker/dist/tui-date-picker.css';
-import 'tui-time-picker/dist/tui-time-picker.css';
+import ScheduleContainer from "./Schedule/components/ScheduleContainer";
 
 function App(props) {
   return (
-  <Router>
-    <ScheduleProvider>
-      <ScheduleContainer />
-    </ScheduleProvider>
+    <Router>
+      <ScheduleProvider>
+        <ScheduleContainer />
+      </ScheduleProvider>
       <Switch>
-      <HomePageProvider>
-      <Route path="/home" component={HomePageContainer}/> 
-
-      </HomePageProvider>
+        <Route
+          path="year/:year_id/semester/:semester_id/schools/:school_id/subject/:subject_id"
+          component={SubjectContainer}
+        />
+        <Route
+          path="/semester/:semester_id/schools/:school_id/"
+          component={SchoolContainer}
+        />
+        <Route
+          path="/semester/:semesterid/schools"
+          component={SchoolsContainer}
+        />
+        <Route path="/" component={HomePageContainer} />
       </Switch>
-
-  </Router>
-
+    </Router>
   );
 }
 

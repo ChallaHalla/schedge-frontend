@@ -33,7 +33,7 @@ function HomePageProvider(props) {
     api.getSchools().then(res => {
       console.log(res);
     });
-    api.getSubjects().then(res => {
+    api.getSchoolSubjects().then(res => {
       console.log(res);
     });
   }, []);
