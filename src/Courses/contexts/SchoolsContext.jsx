@@ -9,13 +9,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         schools: [],
-        fetchingSchools: true,
+        fetchingSchools: true
       };
     case "STORE_SCHOOLS":
       return {
         ...state,
         schools: action.schools,
-        fetchingSchools: false,
+        fetchingSchools: false
       };
 
     default:
@@ -27,18 +27,25 @@ function SchoolsProvider(props) {
   const { children } = props;
   const [state, dispatch] = useReducer(reducer, {
     fetchingSchools: false,
-    schools: [],
+    schools: []
   });
 
   useEffect(() => {
-    api.getSchools().then((res) => {
+    dispatch({
+      type: "FETCH_SCHOOLS"
+    });
+    api.getSchools().then(res => {
       console.log(res);
+      dispatch({
+        type: "STORE_SCHOOLS",
+        schools: res
+      });
     });
   }, []);
   return (
     <SchoolsContext.Provider
       value={{
-        ...state,
+        ...state
       }}
     >
       {children}

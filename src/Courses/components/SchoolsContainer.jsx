@@ -1,11 +1,31 @@
 import React, { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useRouteMatch } from "react-router-dom";
 import { SchoolsContext } from "../contexts/SchoolsContext";
 
 function SchoolsContainer() {
+  const schoolsContext = useContext(SchoolsContext);
+  const { fetchingSchools, schools } = schoolsContext;
+  useEffect(() => {
+    console.log(schoolsContext);
+  }, []);
   const params = useParams();
+  const match = useRouteMatch();
+  console.log(match);
   console.log(params);
-  return <div>Schools container</div>;
+  if (fetchingSchools) {
+    return <div class="loading">Loading</div>;
+  }
+  return (
+    <div>
+      <h3>Schools</h3>
+      {schools.map(school => (
+        <div>
+          <Link to={`${match.path}/schools/${school.code}`}>{school.name}</Link>
+          <br />
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default SchoolsContainer;
