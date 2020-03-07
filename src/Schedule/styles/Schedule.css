@@ -1,10 +1,21 @@
+.schedule__toggle{
+  position:absolute;
+  top:50vh;
+}
 .schedule-window__hidden{
   position: absolute; 
   left:-100%;
 }
+
+.schedule-window__close{
+  margin-left:auto;
+}
 .schedule-window__visible{
   position: absolute; 
-  width:100%;
+  width:25%;
+  height: 100vh;
+  left:0%;
+  background: grey;
+  display:flex;
+  flex-direction: column;
 }
-
-
