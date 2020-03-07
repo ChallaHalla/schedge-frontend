@@ -1,0 +1,10 @@
+.schedule-window__hidden{
+  position: absolute; 
+  left:-100%;
+}
+.schedule-window__visible{
+  position: absolute; 
+  width:100%;
+}
+
+
