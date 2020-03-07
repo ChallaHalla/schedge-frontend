@@ -8,12 +8,12 @@ function SchoolsContainer() {
   const params = useParams();
   const match = useRouteMatch();
   if (fetchingSchools) {
-    return <div class="loading">Loading</div>;
+    return <div className="loading">Loading</div>;
   }
   return (
     <div>
       <h3>Schools</h3>
-      {schools.map(school => (
+      {schools.map((school) => (
         <div>
           <Link to={`${match.url}/${school.code}`}>{school.name}</Link>
           <br />
