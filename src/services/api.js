@@ -41,7 +41,7 @@ export const getSchoolSubjects = requestData => {
 
 export const getSubjectCourses = requestData => {
   //  /{year}/{semester}/{school}/{subject}
-  const url = `${SCHEDGE_API}/${requestData.year_id}/${requestData.semester_id}/${requestData.school_id}/${requestData.subject_}`;
+  const url = `${SCHEDGE_API}/${requestData.year_id}/${requestData.semester_id}/${requestData.school_id}/${requestData.subject_id}`;
   return makeRequest(url);
 };
 

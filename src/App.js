@@ -11,6 +11,7 @@ import SubjectContainer from "./Courses/components/SubjectContainer";
 import ScheduleProvider from "./Schedule/contexts/ScheduleContext";
 import ScheduleContainer from "./Schedule/components/ScheduleContainer";
 import ScheduleSidebar from "./Schedule/components/ScheduleSidebar";
+import SubjectProvider from "./Courses/contexts/SubjectContext";
 
 function App(props) {
   return (
@@ -26,18 +27,17 @@ function App(props) {
           <Route
             path="/semester/:year_id/:semester_id/schools/:school_id/subject/:subject_id"
             component={SubjectContainer}
-          />
-          <Route
-            path="/semester/:year_id/:semester_id/schools/:school_id/"
           >
+            <SubjectProvider>
+              <SubjectContainer />
+            </SubjectProvider>
+          </Route>
+          <Route path="/semester/:year_id/:semester_id/schools/:school_id/">
             <SchoolProvider>
               <SchoolContainer />
             </SchoolProvider>
-
           </Route>
-          <Route
-            path="/semester/:year_id/:semester_id/schools"
-          >
+          <Route path="/semester/:year_id/:semester_id/schools">
             <SchoolsProvider>
               <SchoolsContainer />
             </SchoolsProvider>

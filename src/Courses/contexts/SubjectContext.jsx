@@ -33,9 +33,15 @@ function SubjectProvider(props) {
   });
 
   useEffect(() => {
-    console.log("POOP");
+    dispatch({
+      type: "FETCH_COURSES"
+    });
     api.getSubjectCourses(params).then(res => {
       console.log(res);
+      dispatch({
+        type: "STORE_COURSES",
+        courses: res
+      });
     });
   }, []);
   return (
