@@ -9,6 +9,7 @@ function SubjectContainer() {
   //console.log(courses);
   const params = useParams();
   const match = useRouteMatch();
+  const info = false;
   if (fetchingCourses) {
     return <div class="loading">Loading</div>;
   }
@@ -18,11 +19,28 @@ function SubjectContainer() {
       {courses.map(course => (
         <div>
           <h4>{course.name}</h4>
-          <ul>
-            {course.sections.map(section => (
-              <li>{section.instructors}</li>
-            ))}
-          </ul>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Open</th>
+                <th scope="col">Instructor(s)</th>
+                <th scope="col">Location</th>
+                <th scope="col">Day(s)</th>
+                <th scope="col">Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {course.sections.map(section => (
+                <tr>
+                  <td>{section.status}</td>
+                  <td>{section.instructors} </td>
+                  <td>{section.location}</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       ))}
     </div>

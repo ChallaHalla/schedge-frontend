@@ -12,12 +12,19 @@ import ScheduleProvider from "./Schedule/contexts/ScheduleContext";
 import ScheduleContainer from "./Schedule/components/ScheduleContainer";
 import ScheduleSidebar from "./Schedule/components/ScheduleSidebar";
 import SubjectProvider from "./Courses/contexts/SubjectContext";
+import SearchBar from "./Home/components/SearchBar";
+import SearchBarContext from "./Home/contexts/SearchBarContext";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App(props) {
   return (
     <ScheduleProvider>
       <Router>
         <ScheduleSidebar />
+        <SearchBarContext>
+          <SearchBar />
+        </SearchBarContext>
         <Switch>
           <Route path="/semester/:year_id/:semester_id/schedule">
             <ScheduleProvider>
