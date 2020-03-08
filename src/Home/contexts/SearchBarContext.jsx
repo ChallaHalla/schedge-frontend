@@ -9,13 +9,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         searchResults: [],
-        fetchingResults: false
+        fetchingResults: false,
       };
     case "STORE_RESULTS":
       return {
         ...state,
         searchResults: action.courses,
-        fetchingResults: true
+        fetchingResults: true,
       };
     default:
       throw new Error();
@@ -26,22 +26,22 @@ function SearchBarProvider(props) {
   const { children } = props;
   const [state, dispatch] = useReducer(reducer, {
     fetchingResults: false,
-    courses: []
+    courses: [],
   });
 
   function search(query) {
-    api.getSearch(query).then(res => {
-      dispatch({
-        type: "STORE_RESULTS",
-        courses: res
-      });
-    });
+    // api.getSearch(query).then(res => {
+    //   dispatch({
+    //     type: "STORE_RESULTS",
+    //     courses: res
+    //   });
+    // });
   }
   return (
     <SearchBarContext.Provider
       value={{
         ...state,
-        search
+        search,
       }}
     >
       {children}
