@@ -47,13 +47,13 @@ function WithSearchBar() {
       </SearchBarContext>
 
       <Switch>
-        <Route path={`${match.url}/schedule`}>
+        <Route path={`${match.path}/schedule`}>
           <ScheduleProvider>
             <ScheduleContainer />
           </ScheduleProvider>
         </Route>
         <Route
-          path={`${match.url}/schools/:school_id/subject/:subject_id`}
+          path={`${match.path}/schools/:school_id/subject/:subject_id`}
           component={SubjectContainer}
         >
           <SubjectProvider>
@@ -61,14 +61,14 @@ function WithSearchBar() {
           </SubjectProvider>
         </Route>
         <Route 
-          path={`${match.url}/schools/:school_id/`}
+          path={`${match.path}/schools/:school_id/`}
         >
           <SchoolProvider>
             <SchoolContainer />
           </SchoolProvider>
         </Route>
         <Route 
-          path={`${match.url}/schools`}
+          path={`${match.path}/schools`}
         >
           <SchoolsProvider>
             <SchoolsContainer />

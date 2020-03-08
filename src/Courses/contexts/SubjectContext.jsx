@@ -1,6 +1,7 @@
 import React, { useReducer, useEffect } from "react";
+import { useParams, useRouteMatch } from "react-router-dom";
 import * as api from "../../services/api";
-import { useParams } from "react-router-dom";
+
 export const SubjectContext = React.createContext();
 
 const reducer = (state, action) => {
@@ -9,13 +10,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         courses: [],
-        fetchingCourses: true
+        fetchingCourses: true,
       };
     case "STORE_COURSES":
       return {
         ...state,
         courses: action.courses,
-        fetchingCourses: false
+        fetchingCourses: false,
       };
 
     default:
@@ -26,28 +27,29 @@ const reducer = (state, action) => {
 function SubjectProvider(props) {
   const params = useParams();
   console.log(params);
+  console.log(useRouteMatch());
   const { children } = props;
   const [state, dispatch] = useReducer(reducer, {
     fetchingCourses: false,
-    courses: []
+    courses: [],
   });
 
   useEffect(() => {
     dispatch({
-      type: "FETCH_COURSES"
+      type: "FETCH_COURSES",
     });
-    api.getSubjectCourses(params).then(res => {
+    api.getSubjectCourses(params).then((res) => {
       console.log(res);
       dispatch({
         type: "STORE_COURSES",
-        courses: res
+        courses: res,
       });
     });
   }, []);
   return (
     <SubjectContext.Provider
       value={{
-        ...state
+        ...state,
       }}
     >
       {children}
