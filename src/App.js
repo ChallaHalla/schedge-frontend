@@ -1,7 +1,10 @@
 import "./App.css";
 import React from "react";
 import {
-  BrowserRouter as Router, Route, Switch, useRouteMatch, 
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useRouteMatch
 } from "react-router-dom";
 import HomePageContainer from "./Home/components/HomePageContainer";
 import HomePageProvider from "./Home/contexts/HomePageContext";
@@ -24,15 +27,20 @@ function App(props) {
     <ScheduleProvider>
       <Router>
         <ScheduleSidebar />
-        <Switch>
-          <Route path="/semester/:year_id/:semester_id">
-            <WithSearchBar />
-          </Route>
-          <Route path="/">
-            <HomePageContainer />
-          </Route>
-
-        </Switch>
+        <div class="container-fluid h-100 fill">
+          <div class="row" id="header">
+            <div class="col-md-2">LOGO</div>
+            <div class="col-md-10">NAVIGATION BAR?</div>
+          </div>
+          <Switch>
+            <Route path="/semester/:year_id/:semester_id">
+              <WithSearchBar />
+            </Route>
+            <Route path="/">
+              <HomePageContainer />
+            </Route>
+          </Switch>
+        </div>
       </Router>
     </ScheduleProvider>
   );
@@ -42,40 +50,37 @@ function WithSearchBar() {
   const match = useRouteMatch();
   return (
     <>
-      <SearchBarContext>
-        <SearchBar />
-      </SearchBarContext>
+      <div class="container-fluid h-100 fill">
+        <SearchBarContext>
+          <SearchBar />
+        </SearchBarContext>
 
-      <Switch>
-        <Route path={`${match.path}/schedule`}>
-          <ScheduleProvider>
-            <ScheduleContainer />
-          </ScheduleProvider>
-        </Route>
-        <Route
-          path={`${match.path}/schools/:school_id/subject/:subject_id`}
-          component={SubjectContainer}
-        >
-          <SubjectProvider>
-            <SubjectContainer />
-          </SubjectProvider>
-        </Route>
-        <Route 
-          path={`${match.path}/schools/:school_id/`}
-        >
-          <SchoolProvider>
-            <SchoolContainer />
-          </SchoolProvider>
-        </Route>
-        <Route 
-          path={`${match.path}/schools`}
-        >
-          <SchoolsProvider>
-            <SchoolsContainer />
-          </SchoolsProvider>
-        </Route>
-      
-      </Switch>
+        <Switch>
+          <Route path={`${match.path}/schedule`}>
+            <ScheduleProvider>
+              <ScheduleContainer />
+            </ScheduleProvider>
+          </Route>
+          <Route
+            path={`${match.path}/schools/:school_id/subject/:subject_id`}
+            component={SubjectContainer}
+          >
+            <SubjectProvider>
+              <SubjectContainer />
+            </SubjectProvider>
+          </Route>
+          <Route path={`${match.path}/schools/:school_id/`}>
+            <SchoolProvider>
+              <SchoolContainer />
+            </SchoolProvider>
+          </Route>
+          <Route path={`${match.path}/schools`}>
+            <SchoolsProvider>
+              <SchoolsContainer />
+            </SchoolsProvider>
+          </Route>
+        </Switch>
+      </div>
     </>
   );
 }
