@@ -22,7 +22,7 @@ function ScheduleContainer() {
         end: new Date('3/7/2020'),
       },
     );
-    return curr;
+    return [...curr];
   });
   
 

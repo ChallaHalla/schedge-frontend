@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import * as api from "../../services/api";
 
 export const SearchBarContext = React.createContext();
@@ -24,18 +25,23 @@ const reducer = (state, action) => {
 
 function SearchBarProvider(props) {
   const { children } = props;
+  const params = useParams();
   const [state, dispatch] = useReducer(reducer, {
     fetchingResults: false,
     courses: [],
   });
 
   function search(query) {
-    // api.getSearch(query).then(res => {
-    //   dispatch({
-    //     type: "STORE_RESULTS",
-    //     courses: res
-    //   });
-    // });
+    api.getSearch({
+      ...params,
+      query,
+    }).then((res) => {
+      console.log(res);
+      dispatch({
+        type: "STORE_RESULTS",
+        courses: res,
+      });
+    });
   }
   return (
     <SearchBarContext.Provider
